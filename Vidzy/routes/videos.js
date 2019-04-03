@@ -8,9 +8,11 @@ router.get('/', function (req, res) {
   var collection = db.get('videos');
   collection.find({}, function (err, videos) {
     if (err) throw err;
-    res.json(videos);
+    res.render('videos', {
+      list: videos,
+      title: 'All videos'
+      });
   });
-
 });
 
 router.get('/:id', function (req, res) {
@@ -50,10 +52,12 @@ router.post('/:id', function (req, res) {
   });
 });
 
-router.delete('/:id',function(req,res){
+router.delete('/:id', function (req, res) {
   var collection = db.get('videos');
-  collection.remove({_id:req.params.id},function(err,video){
-    if(err) throw err;
+  collection.remove({
+    _id: req.params.id
+  }, function (err, video) {
+    if (err) throw err;
     res.json(video);
   });
 });
