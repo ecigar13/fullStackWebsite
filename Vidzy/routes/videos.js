@@ -8,10 +8,18 @@ router.get('/', function (req, res) {
   var collection = db.get('videos');
   collection.find({}, function (err, videos) {
     if (err) throw err;
-    res.render('videos', {
-      list: videos,
-      title: 'All videos'
-    });
+    res.json(videos);
+  });
+});
+
+router.get('/:id', function (req, res) {
+  var collection = db.get('videos');
+  collection.findOne({
+    _id: req.params.id
+  }, function (err, video) {
+    if (err) throw err;
+
+    res.json(video);
   });
 });
 
@@ -20,17 +28,6 @@ router.post('/', function (req, res) {
   collection.insert({
     title: req.body.title,
     description: req.body.description
-  }, function (err, video) {
-    if (err) throw err;
-
-    res.json(video);
-  });
-});
-
-router.get('/:id', function (req, res) {
-  var collection = db.get('videos');
-  collection.findOne({
-    _id: req.params.id
   }, function (err, video) {
     if (err) throw err;
 
