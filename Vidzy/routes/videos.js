@@ -11,17 +11,30 @@ router.get('/', function (req, res) {
     res.render('videos', {
       list: videos,
       title: 'All videos'
-      });
+    });
+  });
+});
+
+router.post('/', function (req, res) {
+  var collection = db.get('videos');
+  collection.insert({
+    title: req.body.title,
+    description: req.body.description
+  }, function (err, video) {
+    if (err) throw err;
+
+    res.json(video);
   });
 });
 
 router.get('/:id', function (req, res) {
   var collection = db.get('videos');
-  collection.find({
+  collection.findOne({
     _id: req.params.id
-  }, function (err, videos) {
+  }, function (err, video) {
     if (err) throw err;
-    res.json(videos);
+
+    res.json(video);
   });
 });
 
@@ -31,10 +44,10 @@ router.put('/:id', function (req, res) {
     _id: req.params.id
   }, {
     title: req.body.title,
-    description: req.body.description,
-    genre: req.body.genre
+    description: req.body.description
   }, function (err, video) {
     if (err) throw err;
+
     res.json(video);
   });
 });
@@ -58,6 +71,7 @@ router.delete('/:id', function (req, res) {
     _id: req.params.id
   }, function (err, video) {
     if (err) throw err;
+
     res.json(video);
   });
 });
