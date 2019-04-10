@@ -6,7 +6,12 @@ var db = monk('localhost:27017/vidzy');
 
 router.get('/', function (req, res) {
   var collection = db.get('videos');
-  collection.find({}, function (err, videos) {
+  var searchCriteria = {};
+  var search = req.query.search;
+
+  if(search) searchCriteria={'title':{'$regex':search,'$options':'i'}};
+
+  collection.find(searchCriteria, function (err, videos) {
     if (err) throw err;
     res.json(videos);
   });

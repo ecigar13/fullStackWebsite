@@ -1,13 +1,15 @@
 <h1>Home Page</h1>
 <p>
-  <a href="/#/add-video">Add a Video</a>
+    <a href="/#/add-video">Add a Video</a>
 </p>
 
-<li ng-repeat='video in videos'>
-  <a href="/#/video/{{video._id}}">
-    {{video.title}}
-  </a>
-  <a href="/#/video/delete/{{video._id}}">
-    <span class="glyphicon glyphicon-remove"></span>
-  </a>
-</li>
+<ul>
+    <li ng-repeat='video in videos'>
+      <a href="/#/video/{{video._id}}">
+            {{video.title}}
+        </a>
+        <a href="/#/video/delete/{{video._id}}">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </li>
+</ul>
