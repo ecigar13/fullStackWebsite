@@ -26,11 +26,17 @@ app.config(['$routeProvider','$locationProvider', function ($routeProvider, $loc
     $locationProvider.html5Mode(true);
 }]);
 
+/**
+ * Search controller.
+ */
 app.controller('HomeCtrl', ['$scope', '$resource', '$location',
     function ($scope, $resource, $location) {
+        var genre = $location.search().genre;
         var keyword = $location.search().keyword;
+
         var Videos = $resource('/api/videos', {
-            search: keyword
+            keyword: keyword,
+            genre : genre
         });
         Videos.query(function (videos) {
             $scope.videos = videos;

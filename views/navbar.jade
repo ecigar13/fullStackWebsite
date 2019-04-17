@@ -17,6 +17,10 @@ nav.navbar.navbar-default
               a(href='#') Contact
           form.navbar-form.navbar-right(action='/')
             .form-group
+              select.btn.btn-default.dropdown-toggle(type='button' name='genre')
+                option(value="Action") Action
+                option(value="Drama") Drama
+                option(value="Fantasy") Fantasy
               input.form-control(type='text', name='keyword', placeholder='Search')
             button.btn.btn-default(type='submit') Submit
         // /.navbar-collapse

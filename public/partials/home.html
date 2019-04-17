@@ -3,13 +3,15 @@
     <a href="/#/add-video">Add a Video</a>
 </p>
 
-<ul>
-    <li ng-repeat='video in videos'>
+<div>
+    <div ng-repeat='video in videos' class="videoListBox">
       <a href="/#/video/{{video._id}}">
+        <img class="videoImageList" src="../images/{{video._id}}.jpg" alt="{{video.title}}"><br>
             {{video.title}}
         </a>
         <a href="/#/video/delete/{{video._id}}">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-    </li>
-</ul>
+    </div>
+    <br>
+</div>
