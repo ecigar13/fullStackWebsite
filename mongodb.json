@@ -1,3 +1,5 @@
+Create database "vidzy". Create a collection named "videos".
+
 {
  "title" : "Terminator Genisys",
  "genre" : "SciFi",
